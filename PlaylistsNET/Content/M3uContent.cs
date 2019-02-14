@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using PlaylistsNET.Models;
 
 namespace PlaylistsNET.Content
@@ -67,6 +69,8 @@ namespace PlaylistsNET.Content
             string artist = "";
             string album = "";
             int seconds = 0;
+            Dictionary<string, string> CustomTagValues = new Dictionary<string, string>();
+
             while (!streamReader.EndOfStream)
             {
                 string line = streamReader.ReadLine();
@@ -79,6 +83,11 @@ namespace PlaylistsNET.Content
                             prevLineIsExtInf = true;
                             title = GetTitle(line);
                             seconds = GetSeconds(line);
+
+                            foreach (var attribute in CustomAttributes)
+                            {
+                                CustomTagValues.Add(attribute, GetCustomValueInsideAttribute(line, attribute));
+                            }
                         }
                         else if (line.StartsWith("EXTALB"))
                         {
@@ -159,5 +168,23 @@ namespace PlaylistsNET.Content
             catch { }
             return artist;
         }
+
+        private string GetCustomValueInsideAttribute(string line,string tag)
+        {
+            string attributeValue = "";
+            try
+            {
+                attributeValue = Regex.Match(line, tag + "=\"(.*?)\"").Value;
+            }
+            catch { }
+            return attributeValue;
+        }
+
+        public M3uContent()
+        {
+            CustomAttributes = new List<string>();
+        }
+
+        public List<string> CustomAttributes { get; set; }
     }
 }

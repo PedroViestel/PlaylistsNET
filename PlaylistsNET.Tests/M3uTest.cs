@@ -3,6 +3,8 @@ using PlaylistsNET.Content;
 using PlaylistsNET.Models;
 using PlaylistsNET.Tests;
 using System;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Playlists.UWP.Tests
 {
@@ -129,6 +131,12 @@ namespace Playlists.UWP.Tests
             M3uContent content = new M3uContent();
             M3uPlaylist playlist = new M3uPlaylist();
             playlist.IsExtended = true;
+
+            content.CustomAttributes.Add("tvg-id");
+            content.CustomAttributes.Add("tvg-name");
+            content.CustomAttributes.Add("tvg-logo");
+            content.CustomAttributes.Add("group-title");
+
             playlist.PlaylistEntries.Add(new M3uPlaylistEntry()
             {
                 Album = "",
