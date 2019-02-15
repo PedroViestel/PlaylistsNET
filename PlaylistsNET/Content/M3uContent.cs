@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using PlaylistsNET.Models;
+using System.Linq;
 
 namespace PlaylistsNET.Content
 {
@@ -114,8 +115,11 @@ namespace PlaylistsNET.Content
                         AlbumArtist = artist,
                         Duration = TimeSpan.FromSeconds(seconds),
                         Path = line,
-                        Title = title
+                        Title = title,
+                        CustomTagValues = CustomTagValues
                     });
+
+                    CustomTagValues = new Dictionary<string, string>();
                     prevLineIsExtInf = false;
                 }
             }
@@ -174,7 +178,7 @@ namespace PlaylistsNET.Content
             string attributeValue = "";
             try
             {
-                attributeValue = Regex.Match(line, tag + "=\"(.*?)\"").Value;
+                attributeValue = Regex.Match(line, tag + "=\"(.*?)\"").Groups[1].Value;
             }
             catch { }
             return attributeValue;

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistsNET", "PlaylistsNET\PlaylistsNET.csproj", "{3C819A74-85EC-42CD-A3BB-FD134558F916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaylistsNET", "PlaylistsNET\PlaylistsNET.csproj", "{3C819A74-85EC-42CD-A3BB-FD134558F916}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistsNET.Tests", "PlaylistsNET.Tests\PlaylistsNET.Tests.csproj", "{26636CE1-F3F9-4B7D-AF9B-CE623AB536E8}"
 EndProject
